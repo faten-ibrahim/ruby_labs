@@ -1,16 +1,19 @@
 class ComplexNumber
     attr_accessor :real , :imag
-    @@sum_count=0
-    @@mul_count=0
-    attr_reader :sum_count , :mul_count
+    # @@sum_count=0
+    # @@mul_count=0
+    # attr_reader :sum_count , :mul_count
+    @@state = { "sum_count" => 0, "mul_count" => 0 }
+    attr_reader :state
 
-    def initialize(r=0,i=0)
+    def initialize(r=1,i=1)
         @real=r
         @imag=i
     end
 
     def +(cn1)
-        @@sum_count+=1
+        # @@sum_count+=1
+        @@state["sum_count"]+=1
         cn2=ComplexNumber.new
         cn2.real=@real+cn1.real
         cn2.imag=@imag+cn1.imag
@@ -19,9 +22,8 @@ class ComplexNumber
     end
 
     def *(cn1)
-        @@mul_count+=1
-        @real=1
-        @imag=1
+        # @@mul_count+=1
+        @@state["mul_count"]+=1
         cn2=ComplexNumber.new
         cn2.real=@real*cn1.real
         cn2.imag=@imag*cn1.imag
@@ -52,7 +54,8 @@ class ComplexNumber
     end
 
     def self.print_count()
-        puts " The sum count is : #{@@sum_count}  , and mul count is :  #{@@mul_count} "
+        # puts " The sum count is : #{@@sum_count}  , and mul count is :  #{@@mul_count} "
+        puts " The sum count is : #{@@state["sum_count"]}  , and mul count is :  #{@@state["mul_count"]} "
     end
 
 end
@@ -63,7 +66,7 @@ cn2=ComplexNumber.new(2,3)
 ComplexNumber.print_complex(cn+cn2)
 
 
-cn3=cn2=ComplexNumber.new(4,1)
+cn3=ComplexNumber.new(4,1)
 
 arr=[]
 arr.push(cn)
