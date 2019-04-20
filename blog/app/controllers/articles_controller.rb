@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:index]
     # include CanCan::ControllerAdditions
     load_and_authorize_resource
     # authorize_resource :class => false
